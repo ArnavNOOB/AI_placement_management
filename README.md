@@ -215,51 +215,6 @@ PlacementAI/
 
 ---
 
-## ⚙️ Setup & Installation
-
-### 1. Configure Environment Variables
-Create a `.env` file at the project root folder (or use the preloaded [.env](file:///c:/Arnav/AI-Powered%20Placement_Management_System/.env) file) containing:
-```env
-# MongoDB Connection String (Prisma requires Replica Sets or Atlas URIs for MongoDB)
-DATABASE_URL="mongodb+srv://<username>:<password>@cluster0.mongodb.net/placement_ai"
-
-# NextAuth Configurations
-NEXTAUTH_URL="http://localhost:3000"
-NEXTAUTH_SECRET="a_very_long_random_and_secure_secret_hash_key_12345"
-
-# Google Gemini API Key
-GEMINI_API_KEY="AIzaSyYourGeminiApiKeyHere"
-```
-*(Note: If the `GEMINI_API_KEY` is omitted, the platform will automatically activate a high-fidelity local parser simulator, enabling 100% offline demonstration support).*
-
-### 2. Install Project Dependencies
-Run the package installations:
-```bash
-npm install
-```
-
-### 3. Generate Prisma client libraries
-Compile client types mapping to MongoDB schemas:
-```bash
-npx prisma generate
-```
-
-### 4. Database Seeding (Sample Data)
-To seed 20 Students (with CGPAs), 10 Recruiters, 15 Jobs (with CGPA cutoffs), Resumes, and Application linkings, execute:
-```bash
-node prisma/seed.js
-```
-**Alternatively:** For zero-config local/Vercel setups, navigate to the web endpoint to seed the database instantly:
-👉 `http://localhost:3000/api/admin/seed`
-
-### 5. Launch the Local Dev Server
-```bash
-npm run dev
-```
-Open `http://localhost:3000` to review the SaaS landing experience.
-
----
-
 ## 🔑 Simulation Test Credentials
 All accounts are seeded with the default password: **`password123`**
 
