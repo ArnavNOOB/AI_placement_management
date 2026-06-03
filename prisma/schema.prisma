@@ -1,0 +1,64 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String        @unique
+  password     String
+  role         String        // "STUDENT", "RECRUITER", "PLACEMENT_OFFICER"
+  cgpa         Float?        // Student CGPA (optional)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  resume       Resume?
+  applications Application[]
+}
+
+model Resume {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String   @unique @db.ObjectId
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fileUrl          String
+  atsScore         Int
+  skills           String[]
+  strengths        String[]
+  weaknesses       String[]
+  missingSkills    String[]
+  recommendedRoles String[]
+  questions        Json?    // Stores generated interview questions: { technical: string[], behavioral: string[], project: string[] }
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Job {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  company        String
+  role           String
+  description    String
+  skillsRequired String[]
+  package        String
+  location       String
+  cgpaCut        Float         @default(0.0) // Minimum CGPA required
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  applications   Application[]
+}
+
+model Application {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  studentId String   @db.ObjectId
+  student   User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  jobId     String   @db.ObjectId
+  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  status    String   // "PENDING", "REVIEWING", "SHORTLISTED", "REJECTED", "ACCEPTED"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([studentId, jobId])
+}

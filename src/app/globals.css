@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #09090B;
+  --foreground: #FAFAFA;
+  --primary: #6366F1;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --card: #18181B;
 }
 
-@theme inline {
+@theme {
+  /* Override Slate to Zinc dark theme colors requested by user */
+  --color-slate-50: #FAFAFA;
+  --color-slate-100: #F4F4F5;
+  --color-slate-200: #E4E4E7;
+  --color-slate-300: #D4D4D8;
+  --color-slate-400: #A1A1AA;
+  --color-slate-500: #71717A;
+  --color-slate-600: #52525B;
+  --color-slate-700: #3F3F46;
+  --color-slate-800: #27272A;
+  --color-slate-900: #18181B; /* Card Background */
+  --color-slate-950: #09090B; /* Dark Background */
+
+  /* Map Cyan accent (used as primary brand color) to the new primary #6366F1 Indigo */
+  --color-cyan-50: #EEF2FF;
+  --color-cyan-100: #E0E7FF;
+  --color-cyan-200: #C7D2FE;
+  --color-cyan-300: #A5B4FC;
+  --color-cyan-400: #818CF8;
+  --color-cyan-500: #6366F1; /* Primary Accent */
+  --color-cyan-600: #4F46E5;
+  --color-cyan-700: #4338CA;
+  --color-cyan-800: #3730A3;
+  --color-cyan-900: #312E81;
+  --color-cyan-950: #1E1B4B;
+
+  /* Map Indigo brand accent */
+  --color-indigo-50: #EEF2FF;
+  --color-indigo-100: #E0E7FF;
+  --color-indigo-200: #C7D2FE;
+  --color-indigo-300: #A5B4FC;
+  --color-indigo-400: #818CF8;
+  --color-indigo-500: #6366F1; /* Primary Accent */
+  --color-indigo-600: #4F46E5;
+  --color-indigo-700: #4338CA;
+  --color-indigo-800: #3730A3;
+  --color-indigo-900: #312E81;
+  --color-indigo-950: #1E1B4B;
+
+  /* Emerald Success overrides mapping to #10B981 */
+  --color-emerald-50: #ECFDF5;
+  --color-emerald-100: #D1FAE5;
+  --color-emerald-200: #A7F3D0;
+  --color-emerald-300: #6EE7B7;
+  --color-emerald-400: #34D399;
+  --color-emerald-500: #10B981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065F46;
+  --color-emerald-900: #064E3B;
+  --color-emerald-950: #022C22;
+
+  /* Amber Warning overrides mapping to #F59E0B */
+  --color-amber-50: #FFFBEB;
+  --color-amber-100: #FEF3C7;
+  --color-amber-200: #FDE68A;
+  --color-amber-300: #FCD34D;
+  --color-amber-400: #FBBF24;
+  --color-amber-500: #F59E0B;
+  --color-amber-600: #D97706;
+  --color-amber-700: #B45309;
+  --color-amber-800: #92400E;
+  --color-amber-900: #78350F;
+  --color-amber-950: #451A03;
+
+  /* System default background & text colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Font mappings from global Geist variables */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
